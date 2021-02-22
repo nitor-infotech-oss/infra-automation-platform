@@ -1,0 +1,14 @@
+[winservers]
+10.11.14.18
+[winservers:vars]
+ansible_ssh_user=santosh.kolekar@nitorinfotech.net
+ansible_ssh_pass=Welcome@1234
+ansible_ssh_port=5985
+ansible_connection=winrm
+ansible_winrm_transport=ntlm 
+ansible_winrm_scheme=http
+ansible_winrm_kerberos_delegation=true
+ansible_winrm_server_cert_validation=ignore
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+

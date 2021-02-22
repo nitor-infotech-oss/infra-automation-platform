@@ -1,0 +1,2 @@
+#- win_shell: D:\vm_ps.ps1 >> D:\vm_ps.txt
+- win_shell: /home/abhishekt/vm_vagrant_ansible/vm_create.ps1

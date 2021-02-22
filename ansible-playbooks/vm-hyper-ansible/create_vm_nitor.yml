@@ -1,0 +1,60 @@
+---
+- name: Provision VM
+  hosts: 10.11.14.18
+  gather_facts: no
+  vars_files:
+    - vars/win_cmd.yml
+  tasks:
+    - import_tasks: tasks/prov_vm.yml
+    - pause:
+        minutes: 2  
+    - name: Copy and Execute the script
+      win_shell: "{{ win_command }}"
+      register: homedir_out
+    - debug:
+        var: homedir_out.stdout_lines[3].split(',')[0].replace('{','')
+    - name: Sending an e-mail using Gmail SMTP servers
+      mail:
+          host: smtp.gmail.com
+          port: 587
+          username: santoshkolekar99@gmail.com
+          password: gysepwqiwfpuuttw
+          to: "{{ to }}"
+          subject: Virtual Machine Details report
+          body:
+            "Dear User,\n
+            please find the below virtual machine details.\n\n
+            public_ip: {{ homedir_out.stdout_lines[3].split(',')[0].replace('{','') }}\n
+            user_name: Administrator\n
+            Password: Nitor@123\n\n
+            Regards,\n
+            System Admin\n"
+      delegate_to: localhost
+
+- name: Create in-memory Ansible inventory
+  add_host:
+    hostname: '{{ var }}'
+    groups: just_created
+    ansible_ssh_user: Administrator
+    ansible_ssh_pass: Nitor@123
+    ansible_ssh_port: 5985
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_scheme: http
+    ansible_winrm_kerberos_delegation: true
+    ansible_winrm_server_cert_validation: ignore
+
+- name: Configure nodes
+  hosts: created_nodes
+  become: true
+  gather_facts: false
+  register: created_nodes  
+
+  #tasks:
+    #- name: Copy jdk software to remote host
+      
+    #- name: install java
+      #win_package:
+    
+
+   

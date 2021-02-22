@@ -1,0 +1,7 @@
+---
+# set these parameters to control the region, keypair, and AMI that are launched
+#ec2_region: us-east-2
+#win_command: get-vm -Name windows_server-2012R2 | Select -ExpandProperty Networkadapters | Select IPAddresses
+win_command: get-vm -Name {{ vm_name }} | Select -ExpandProperty Networkadapters | Select IPAddresses
+to: "{{ to }}"
+

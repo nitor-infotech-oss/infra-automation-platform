@@ -1,0 +1,18 @@
+vms:
+  - type: winservers 
+    name: "web-sit"
+
+    cpu: 2   
+    memory: 4096MB
+
+    network:
+      ip: 10.11.14.19
+      netmask: 255.255.255.0
+      gateway: 10.11.14.1
+      dns: 10.11.12.11
+      
+    network_switch: 'Default Switch' 
+
+    src_vhd: "C:\\New Virtual Machine.vhdx"
+    dest_vhd: "C:\\Users\\Public\\Documents\\Hyper-V\\Virtual hard disks\\web.vhdx"
+    img_path: "D:\\software\\9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO"

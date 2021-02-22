@@ -1,0 +1,7 @@
+- name: Run Powershell Scripts
+  hosts: 10.11.14.18
+  tasks:
+    - name: run a powershell script
+      script: /var/lib/awx/projects/vm_vagrant_ansible/vars/vm_create.ps1
+      register: out
+    - debug: var=out

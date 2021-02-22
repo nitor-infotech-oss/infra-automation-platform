@@ -1,0 +1,8 @@
+---
+- name: Provision VM
+  hosts: 10.11.14.18
+  gather_facts: no
+
+  tasks:
+    - import_tasks: tasks/prov_vm.yml 
+

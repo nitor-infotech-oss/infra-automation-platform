@@ -1,0 +1,14 @@
+---
+#- name: Include vm env var
+  #include_vars:
+    #file: vars/sit1.yml
+
+ - name: Create VMs
+     win_vagrant_vm:
+       createdir: "{{item.createdir}}"
+       loc: "{{item.loc}}"
+       os: "{{item.os}}"
+       varup: "{{item.varup}}"
+       diskpath: "{{item.varssh}}"
+       state: present
+

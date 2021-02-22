@@ -1,0 +1,28 @@
+- hosts: localhost
+  vars:
+    resource_group: "{{ resource_group }}"
+    location: " {{ location }}"
+  tasks:
+    - name: Create Azure resource group 
+      azure_rm_resourcegroup: 
+        location: "{{location}}"
+        name: "{{resource_group}}"
+                
+    - name: create an account
+      azure_rm_storageaccount:
+        resource_group: "{{ resource_group }}"
+        name: clh0002
+        type: Standard_RAGRS
+        tags:
+          testing: testing
+          delete: on-exit 
+        
+    - name: Create container foo and upload a file
+      azure_rm_storageblob:
+        resource_group: "{{ resource_group }}"
+        storage_account_name: clh0002
+        container: foo
+        blob: download.jpg
+        src: ./src/download.jpg
+        public_access: container
+        content_type: 'application/image'
