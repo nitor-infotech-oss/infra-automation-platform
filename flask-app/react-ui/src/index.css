@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.MuiTableCell-root {
+  text-align: center !important;
+}
+
+.MuiTableRow-head{
+  background: rgb(100, 192, 257);
+}
+
+div.menubar > div > div {
+  background: rgb(0, 188, 212) !important;
+  margin-top: 4.9% !important;
+}
